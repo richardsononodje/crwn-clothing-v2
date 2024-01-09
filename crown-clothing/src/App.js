@@ -1,44 +1,46 @@
-// import './App.css';
-// import CategoryPage from './Components/Categories/categories-component'
-// import CategorySort from './Components/Categories/categories-sort-component';
-import Directory from "./Components/directory/directory-component";
+
+import { Routes, Route } from 'react-router-dom';
+// import { Outlet } from 'react-router-dom';
+
+
+import Home from "./route/home/home.component";
+import Navigation from './route/navigation/navigation.component';
+import SignIn from './route/signIn/signIn.component';
+
+
+
+
+
+const Shop =()=>{
+  return (
+    <div>
+    <h1>
+      this is the shop page
+    </h1>
+  </div>
+  )
+ 
+}
 
 
 const App=()=> {
-  const categories =[
-    {
-      "id": 1,
-      "title": "hats",
-      "imageUrl": "https://i.ibb.co/cvpntL1/hats.png"
-    },
-    {
-      "id": 2,
-      "title": "jackets",
-      "imageUrl": "https://i.ibb.co/px2tCc3/jackets.png"
-    },
-    {
-      "id": 3,
-      "title": "sneakers",
-      "imageUrl": "https://i.ibb.co/0jqHpnp/sneakers.png"
-    },
-    {
-      "id": 4,
-      "title": "womens",
-      "imageUrl": "https://i.ibb.co/GCCdy8t/womens.png"
-    },
-    {
-      "id": 5,
-      "title": "mens",
-      "imageUrl": "https://i.ibb.co/R70vBrQ/men.png"
-    }
-  ]  
 
- 
+
   return (
-    <div className="App">
-      <Directory categories={categories}/>
-     
-    </div> 
+  
+    // <Routes>
+    //   <Route path='/' element ={<Home />}>
+    //     <Route path='/Shop' element ={<Shop />} />
+    //   </Route>
+    // </Routes>
+    <Routes>
+      <Route path='/' element={<Navigation />} > 
+        <Route index element ={<Home />} />
+        <Route path='/Shop' element ={<Shop />} />
+        <Route path ='/Sign-In' element={<SignIn/>}/>
+      </Route>
+    </Routes>
+   
   );
 }
 
