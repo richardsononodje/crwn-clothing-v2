@@ -1,11 +1,22 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithPopup, 
-  signInWithRedirect, 
-  GoogleAuthProvider } from 'firebase/auth';
 
+// 93. Authenticating With Firebase
+import {
+   getAuth,
+   signInWithPopup, 
+   signInWithRedirect, 
+   GoogleAuthProvider,
+   createUserWithEmailAndPassword,
+   signInWithEmailAndPassword
+  } from 'firebase/auth';
+
+
+  // 95. Setting Up User Documents
 
 import { getFirestore, doc, getDoc, setDoc} from 'firebase/firestore';
 import { DocumentSnapshot } from "firebase/firestore";
+
+// 93. Authenticating With Firebase
 
 const firebaseConfig = {
   apiKey: "AIzaSyDM9HDT4wsRLw8xOYMIdllp2-K_vqbAV0Q",
@@ -15,6 +26,8 @@ const firebaseConfig = {
   messagingSenderId: "690508760523",
   appId: "1:690508760523:web:0dbc579780f93edaa9e24e"
 };
+
+// 93. Authenticating With Firebase
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -30,10 +43,10 @@ export const auth = getAuth();
 export const googleSignInWithPopUp = ()=> signInWithPopup(auth, provider);
 export const googleSignInWithRedirect = ()=> signInWithRedirect (auth, provider);
 
-// 
+// 95. Setting Up User Documents
 export const dp = getFirestore();
 
-export const creatUserFromAuth = async (userAuth)=>{
+export const creatUserFromAuth = async (userAuth, additionalInfo = {})=>{
   const userDocRef = doc (dp, 'users', userAuth.uid)
 
   console.log (userDocRef);
@@ -54,16 +67,34 @@ export const creatUserFromAuth = async (userAuth)=>{
         userDocRef, {
           displayName,
           email,
-          createdAt
+          createdAt,
+          ...additionalInfo
         }
+        
       );
     }
     catch {
-      return userDocRef
+      console.log ('there was an error')
     }
-
   }
-
- 
+  return userDocRef;
 };
+
+export const authCreateUserWithEmailAndPassword = async (email, password)=>{
+
+  if(!email ||!password ) return;
+
+ return await createUserWithEmailAndPassword (auth, email, password);
+}
+
+// sign-in with email and password
+
+export const authSignInwithemailAndPassword = async(email, password)=>{
+
+  if (!email || !password) return;
+
+  return await signInWithEmailAndPassword (auth, email, password);
+
+}
+
 

@@ -1,0 +1,28 @@
+.sign-up-container {
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+}
+
+h2 {
+  margin: 10px 0px;
+}
+
+
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 40px;
+  color: white;
+  background-color: blue;
+}
+
+.btn-dark {
+
+  border: none;
+  border-radius: 10px;
+  padding: 10px 40px;
+  color: white;
+  background-color: black;
+  margin: 20px 0px;
+}
