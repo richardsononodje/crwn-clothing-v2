@@ -1,3 +1,4 @@
+import { async } from '@firebase/util';
 import { initializeApp } from 'firebase/app';
 
 // 93. Authenticating With Firebase
@@ -7,7 +8,8 @@ import {
    signInWithRedirect, 
    GoogleAuthProvider,
    createUserWithEmailAndPassword,
-   signInWithEmailAndPassword
+   signInWithEmailAndPassword,
+   signOut
   } from 'firebase/auth';
 
 
@@ -96,5 +98,8 @@ export const authSignInwithemailAndPassword = async(email, password)=>{
   return await signInWithEmailAndPassword (auth, email, password);
 
 }
+
+
+export const SignOutUser =()=> signOut(auth)
 
 
